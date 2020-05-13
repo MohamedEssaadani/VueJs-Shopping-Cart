@@ -2,17 +2,20 @@
   <div id="app">
     <div class="container">
       <books></books>
+      <cart></cart>
     </div>
   </div>
 </template>
 
 <script>
 import Books from "./components/Books";
+import Cart from "./components/Cart";
 
 export default {
   name: "App",
   components: {
-    Books
+    Books,
+    Cart
   }
 };
 </script>
