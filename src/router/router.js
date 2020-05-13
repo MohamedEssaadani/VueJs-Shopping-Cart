@@ -7,14 +7,17 @@ Vue.use(VueRouter);
 
 const routes = [{
         path: '/',
+        name: 'Books',
         component: Books
     },
     {
-        path: '/Cart',
+        path: '/cart',
+        name: 'cart',
         component: Cart
     },
 ];
 
 export const router = new VueRouter({
-    routes
+    routes,
+    mode: 'history'
 });
