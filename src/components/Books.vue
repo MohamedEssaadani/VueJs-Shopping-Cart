@@ -2,7 +2,7 @@
   <div>
     <div class="alert alert-success" :style="displayAlert">
       <span>Added to cart.</span>
-      <a href>View Cart</a>
+      <router-link to="/Cart">View Cart</router-link>
     </div>
     <div class="row">
       <div class="col-md-4" v-for="book in books" v-bind:key="book.id">
