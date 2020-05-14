@@ -12,13 +12,15 @@
         </thead>
 
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Laravel</td>
-            <td>$22.34</td>
-            <td>2</td>
+          <tr v-for="item in cartItems" :key="item.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>${{item.price}}</td>
             <td>
-              <img src="/images/books/csharp.jpg" style="height:100px; width:100px;" alt />
+              <input type="number" :value="item.quantity" @change="updateQuantity(item.id)" />
+            </td>
+            <td>
+              <img :src="item.image" style="height:100px; width:100px;" alt />
             </td>
             <td>
               <button class="btn btn-danger">
@@ -34,6 +36,16 @@
 
 <script>
 export default {
-  name: "cart"
+  name: "cart",
+  computed: {
+    cartItems() {
+      return this.$store.getters.cartItems;
+    }
+  },
+  methods: {
+    updateQuantity(id) {
+      this.$store.commit("updateQuantity", id);
+    }
+  }
 };
 </script>

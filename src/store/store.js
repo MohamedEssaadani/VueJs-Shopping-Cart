@@ -27,12 +27,33 @@ export const store = new Vuex.Store({
         cart: []
     },
     getters: {
-        books: (state) => state.books
+        books: (state) => state.books,
+        cartItems: (state) => state.cart,
     },
     mutations: {
         addToCart(state, book) {
-            book.quantity = 1;
-            state.cart.push(book);
+            let item = undefined;
+            //check if the item already in cart by trying to get it from cart
+            item = state.cart.find(b => b.id === book.id);
+            //if item doesnt exist then create new one in the cart
+            if (item == undefined) {
+                book.quantity = 1;
+                state.cart.push(book);
+
+            } else {
+                //if item already exist then update quantity
+                item.quantity += 1;
+                state.cart.splice(state.cart.indexOf(book), 1, item);
+            }
+
+        },
+        updateQuantity(state, id) {
+            //Find index of book 
+            let bookIndex = state.cart.findIndex((book => book.id == id));
+
+            //Update object's name property.
+            state.cart[bookIndex].quantity += 1;
+
         }
     }
 })
