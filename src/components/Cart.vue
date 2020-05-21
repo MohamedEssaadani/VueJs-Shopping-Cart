@@ -12,7 +12,7 @@
         </thead>
 
         <tbody>
-          <tr v-for="item in cartItems" :key="item.id">
+          <tr v-for="(item, index) in cartItems" :key="item.id">
             <td>{{item.id}}</td>
             <td>{{item.name}}</td>
             <td>${{item.price}}</td>
@@ -23,9 +23,7 @@
               <img :src="item.image" style="height:100px; width:100px;" alt />
             </td>
             <td>
-              <button class="btn btn-danger">
-                <i class="fa fa-trash"></i>
-              </button>
+              <i class="btn btn-danger fa fa-trash" @click="remove(index)"></i>
             </td>
           </tr>
         </tbody>
@@ -45,6 +43,9 @@ export default {
   methods: {
     updateQuantity(id) {
       this.$store.commit("updateQuantity", id);
+    },
+    remove(index) {
+      this.$store.commit("remove", index);
     }
   }
 };

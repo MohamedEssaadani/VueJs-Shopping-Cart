@@ -48,12 +48,17 @@ export const store = new Vuex.Store({
 
         },
         updateQuantity(state, id) {
+            alert('ee');
             //Find index of book 
             let bookIndex = state.cart.findIndex((book => book.id == id));
 
             //Update object's name property.
             state.cart[bookIndex].quantity += 1;
+            console.log(bookIndex)
 
+        },
+        remove(state, index) {
+            state.cart.splice(index, 1);
         }
     }
 })
